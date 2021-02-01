@@ -8,11 +8,11 @@ var connection = mysql.createConnection({
   port: 3306,
 
   // Your username
-  user: "root",
+  user: "admin",
 
   // Your password
-  password: "root",
-  database: "employeeDB_Schema",
+  password: "Today2021!$",
+  database: "employeeDB",
 });
 
 connection.connect(function (error) {
@@ -24,26 +24,41 @@ function employee_App() {
   inquirer
     .prompt({
       name: "action",
-      type: "list",
+      type: "rawlist",
       message: "Please choose a selection: ",
       choices: [
         "View All Employees",
-        "View All Employees by Department",
-        "View All Employees by Manager",
+        "View All Departments",
+        "View All Roles",
         "Add Employee",
         "Remove Employee",
-        "Update Employee Role",
-        "Update Employee Manager",
+        "Exit Application",
       ],
     })
     .then(function (answer) {
       switch (answer.action) {
-        case "View Employee List":
+        case "View All Employees":
           viewEmployeeList();
           break;
 
-        case "View All Employees by Department":
+        case "View All Departments":
           viewDepartmentList();
+          break;
+
+        case "View All Roles":
+          viewRolesList();
+          break;
+
+        case "Add Employee":
+          addEmployee();
+          break;
+
+        case "Remove Employee":
+          removeEmployee();
+          break;
+
+        case "Exit Application":
+          exitApp();
           break;
       }
     });
@@ -51,8 +66,86 @@ function employee_App() {
 
 function viewEmployeeList() {
   let query = "SELECT * FROM employee";
+
+  connection.query(query, (error, data) => {
+    if (error) throw error;
+    console.table(data);
+    return employee_App();
+  });
 }
 
 function viewDepartmentList() {
   let query = "SELECT * FROM department";
+
+  connection.query(query, (error, data) => {
+    if (error) throw error;
+    console.table(data);
+    return employee_App();
+  });
+}
+
+function viewRolesList() {
+  let query = "SELECT * FROM roles";
+
+  connection.query(query, (error, data) => {
+    if (error) throw error;
+    console.table(data);
+    return employee_App();
+  });
+}
+
+function addEmployee() {
+  inquirer
+    .prompt([
+      {
+        name: "first_name",
+        type: "input",
+        message: "Enter first name: ",
+      },
+      {
+        name: "last_name",
+        type: "input",
+        message: "Enter last name: ",
+      },
+      {
+        name: "role_id",
+        type: "input",
+        message: "Enter role id number: ",
+      },
+      {
+        name: "manager_id",
+        type: "input",
+        message: "Enter manager id number: ",
+      },
+    ])
+    .then(function (answer) {
+      connection.query(
+        "INSERT INTO employee SET ?",
+        {
+          first_name: answer.first_name,
+          last_name: answer.last_name,
+          role_id: answer.role_id,
+          manager_id: answer.manager_id,
+        },
+        function (error) {
+          if (error) throw error;
+          console.log("Added successfully!");
+          return employee_App();
+        }
+      );
+    });
+}
+
+function removeEmployee() {}
+
+function exitApp() {
+  inquirer.prompt({
+    name: "quit",
+    type: "confirm",
+    message: "Would you like to quit the application?",
+    default: false,
+    when: (answer) => {
+      return answer.choices === "quit";
+    },
+  }).then (function ())
 }
