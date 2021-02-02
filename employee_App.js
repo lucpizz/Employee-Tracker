@@ -144,7 +144,7 @@ function removeEmployee() {
     let user_array = data.map((user, index) => {
       return { value: user.id, name: `${user.first_name} ${user.last_name}` };
     });
-    inquierer
+    inquirer
       .prompt([
         {
           type: "list ",

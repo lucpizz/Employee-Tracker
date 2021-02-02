@@ -41,8 +41,8 @@ INSERT INTO roles (id, title, salary, dept_id)
 VALUES (1234, "HelpDesk Agent", 40000.00, 100);
 
 
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (1, "Tom", "Costas", 1234, 2);
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES ("Tom", "Costas", 1234, 2);
 
 
 SELECT * FROM department;
