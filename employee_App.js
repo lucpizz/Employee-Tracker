@@ -39,7 +39,6 @@ function employee_App() {
       switch (answer.action) {
         case "View All Employees":
           viewEmployeeList((data_from_select_all) => {
-            console.log("This is from the callback.");
             console.table(data_from_select_all);
             return employee_App();
           });
