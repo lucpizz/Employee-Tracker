@@ -1,5 +1,5 @@
-# A work in progress
+## A work in progress
 
 ---
 
-# Employee-Tracker
+# Employee-Tracker-Application
