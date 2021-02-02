@@ -78,7 +78,7 @@ Please contact me at lucpizz@gmail.com for any questions regarding this program.
 
 ## Snapshot of Program
 
-![Snapshot of Command line Program](./Image/Team-Generator.gif)
+![Snapshot of Command line Program](./Images/Employee-Tracker-App.png)
 
 ---
 
