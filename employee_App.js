@@ -38,7 +38,11 @@ function employee_App() {
     .then(function (answer) {
       switch (answer.action) {
         case "View All Employees":
-          viewEmployeeList();
+          viewEmployeeList((data_from_select_all) => {
+            console.log("This is from the callback.");
+            console.table(data_from_select_all);
+            return employee_App();
+          });
           break;
 
         case "View All Departments":
@@ -64,13 +68,12 @@ function employee_App() {
     });
 }
 
-function viewEmployeeList() {
+function viewEmployeeList(cb) {
   let query = "SELECT * FROM employee";
 
   connection.query(query, (error, data) => {
     if (error) throw error;
-    console.table(data);
-    return employee_App();
+    cb(data);
   });
 }
 
@@ -136,9 +139,27 @@ function addEmployee() {
     });
 }
 
-/*
+function removeEmployee() {
+  viewEmployeeList((data) => {
+    let user_array = data.map((user, index) => {
+      return { value: user.id, name: `${user.first_name} ${user.last_name}` };
+    });
+    inquierer
+      .prompt([
+        {
+          type: "list ",
+          chocies: user_array,
+          message: "Please select employee to remove.",
+          name: "removeEmployee",
+        },
+      ])
+      .then((data) => {
+        console.log(data);
+      });
+  });
+}
 
-function removeEmployee() {}
+/*
 
 function exitApp() {
   inquirer.prompt({
