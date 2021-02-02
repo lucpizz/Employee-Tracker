@@ -6,25 +6,27 @@ USE employeeDB;
 
 CREATE TABLE department (
 
-id INT(15) PRIMARY KEY NOT NULL,
-dept_name VARCHAR(50)
+id INT(15) AUTO_INCREMENT NOT NULL,
+dept_name VARCHAR(30),
+PRIMARY KEY (id)
 
 );
 
 CREATE TABLE roles (
 
-id INT(15) NOT NULL,
-title VARCHAR(50) NOT NULL,
+id INT(15) AUTO_INCREMENT NOT NULL,
+title VARCHAR(30) NOT NULL,
 salary DECIMAL NOT NULL,
-dept_id INT(15) NOT NULL
+dept_id INT(15) NOT NULL,
+PRIMARY KEY (id)
 
 );
 
 CREATE TABLE employee (
 
 id INT(15) AUTO_INCREMENT NOT NULL,
-first_name VARCHAR(50) NOT NULL,
-last_name VARCHAR(50) NOT NULL,
+first_name VARCHAR(30) NOT NULL,
+last_name VARCHAR(30) NOT NULL,
 role_id INT(15) NOT NULL,
 manager_id INT(15),
 PRIMARY KEY (id) 
