@@ -13,7 +13,7 @@ dept_name VARCHAR(50)
 
 CREATE TABLE roles (
 
-id INT(15) PRIMARY KEY NOT NULL,
+id INT(15) NOT NULL,
 title VARCHAR(50) NOT NULL,
 salary DECIMAL NOT NULL,
 dept_id INT(15) NOT NULL
@@ -22,11 +22,12 @@ dept_id INT(15) NOT NULL
 
 CREATE TABLE employee (
 
-id INT(15) PRIMARY KEY NOT NULL,
-first_name VARCHAR(50)NOT NULL,
+id INT(15) AUTO_INCREMENT NOT NULL,
+first_name VARCHAR(50) NOT NULL,
 last_name VARCHAR(50) NOT NULL,
 role_id INT(15) NOT NULL,
-manager_id INT(15)
+manager_id INT(15),
+PRIMARY KEY (id) 
 
 );
 
@@ -42,6 +43,7 @@ VALUES (1234, "HelpDesk Agent", 40000.00, 100);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES (1, "Tom", "Costas", 1234, 2);
+
 
 SELECT * FROM department;
 SELECT * FROM roles;
