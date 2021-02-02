@@ -136,6 +136,8 @@ function addEmployee() {
     });
 }
 
+/*
+
 function removeEmployee() {}
 
 function exitApp() {
@@ -149,3 +151,5 @@ function exitApp() {
     },
   }).then (function ())
 }
+
+*/
