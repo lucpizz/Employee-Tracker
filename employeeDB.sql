@@ -29,7 +29,7 @@ first_name VARCHAR(30) NOT NULL,
 last_name VARCHAR(30) NOT NULL,
 role_id INT(15) NOT NULL,
 manager_id INT(15),
-PRIMARY KEY (id) 
+PRIMARY KEY (id)
 
 );
 
